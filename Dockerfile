@@ -7,7 +7,7 @@ ENV BUNDLE_APP_CONFIG $GEM_HOME
 
 ADD Gemfile* /tmp/
 RUN cd /tmp && bundle install && rm Gemfile*
-
+RUN gem install foreman
 RUN mkdir /app
 
 WORKDIR /app/
