@@ -11,11 +11,10 @@ RUN gem install foreman
 RUN mkdir /app
 
 WORKDIR /app/
-EXPOSE 3000
+EXPOSE 5000
 
 ONBUILD ADD .ruby-version /app/.ruby-version
 ONBUILD ADD Gemfile* /app/
 ONBUILD RUN BUNDLE_JOBS=$(cat /proc/cpuinfo | grep cores | cut -d':' -f2 | head -n1 | xargs expr -1 +) bundle install
 ONBUILD ADD . /app/
-ONBUILD ENTRYPOINT ["foreman", "start"]
-ONBUILD CMD ["web"]
+ONBUILD CMD ["foreman", "start", "web"]
